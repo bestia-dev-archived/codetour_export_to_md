@@ -1,0 +1,116 @@
+[package]
+name = "mem6"
+version = "2020.422.1045"
+authors = ["Luciano Bestia <Luciano.Bestia@gmail.com>"]
+edition = "2018"
+description = "Learning Rust Wasm/WebAssembly with Virtual Dom Dodrio"
+repository = "https://github.com/LucianoBestia/mem6_game"
+readme = "README.md"
+license = "MIT"
+keywords = ["wasm","dodrio","virtual dom"]
+categories = ["game","learning"]
+publish = false
+
+[lib]
+# cdylib is for the wasm module library
+crate-type = ["cdylib"]
+
+[dependencies]
+# region: my dependencies
+rust_wasm_websys_utils = "0.4.2"
+# rust_wasm_websys_utils = { path = "../../rust_wasm_websys_utils" }
+rust_wasm_router = { path = "../../rust_wasm_router" }
+rust_wasm_dodrio_templating = { path = "../../rust_wasm_dodrio_templating" }
+rust_wasm_websocket = { path = "../../rust_wasm_websocket" }
+rust_wasm_webrtc = { path = "../../rust_wasm_webrtc" }
+#qrcode53bytes = { path = "../../qrcode53bytes" }
+qrcode53bytes ="1.0.0"
+# endregion: my dependencies
+
+# region: other dependencies
+unwrap = "1.2.1"
+# dodrio = "0.1.0"
+# dodrio =  { git = "https://github.com/fitzgen/dodrio", branch = "master" }
+dodrio = {path = "../../dodrio"}
+wasm-bindgen = { version = "0.2.58", features = ["serde-serialize"] }
+console_error_panic_hook = "0.1.6"
+#newer version of rand do not have smallring
+rand = { version = "0.7.3", features = ["wasm-bindgen","small_rng"] }
+js-sys = "0.3"
+serde ="1.0.104"
+serde_derive = "1.0.104"
+serde_json = "1.0"
+#udep futures = "0.3.1"
+# newer futures have unstable .await
+wasm-bindgen-futures = "0.4.8"
+#log = "0.4.8"
+strum = "0.17.1"
+strum_macros = "0.17.1"
+conv = "0.3.3"
+gloo-timers = {version="0.2.0", features=["futures"]}
+reader_for_microxml = "1.0.4"
+#udep mopa = "0.2.2"
+# endregion: other dependencies
+
+[dependencies.web-sys]
+version = "0.3.33"
+features = [
+  "AbortController",
+  "console",
+  "CssStyleDeclaration",
+  "Document",
+  "Element",
+  "ErrorEvent",
+  "Event",
+  "EventListener",
+  "EventTarget",
+  "FormData",
+  "Headers",
+  "History",
+  "HtmlElement",
+  "HtmlFontElement",
+  "HtmlFormElement",
+  "HtmlHtmlElement",
+  "HtmlInputElement",
+  "HtmlImageElement",
+  "HtmlAudioElement",
+  "HtmlMediaElement",
+  "HtmlSpanElement",
+  "KeyboardEvent",
+  "Location",
+  "MediaQueryList",
+  "MouseEvent",
+  "Navigator",
+  "Node",
+  "ReferrerPolicy",
+  "Request",
+  "RequestCache",
+  "RequestCredentials",
+  "RequestInit",
+  "RequestMode",
+  "RequestRedirect",
+  "Response",
+  "RtcConfiguration",
+  "RtcDataChannelInit",
+  "RtcDataChannel",
+  "RtcDataChannelState",
+  "RtcSessionDescription",
+  "RtcSessionDescriptionInit",
+  "RtcIceCandidate",
+  "RtcIceCandidateInit",
+  "RtcPeerConnectionIceEvent",
+  "RtcPeerConnection",
+  "RtcSdpType",
+  "Screen",
+  "Storage",
+  "WebSocket",
+  "Window",
+]
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.8"
+
+# Rust does not have yet 2020-04-20 "profiles" on workspace sub-projects.
+# I can put it only on the workspace alone.
+# [profile.release]
+# panic = "abort"

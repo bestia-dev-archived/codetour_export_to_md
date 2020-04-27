@@ -1,0 +1,271 @@
+{
+  "tour": "codetour_start_route_template_render",
+  "title": "codetour_start_route_template_render",
+  "steps": [
+    {
+      "file": "webfolder/mem6/index.html",
+      "line": 82,
+      "description": "### index.html wasm import script\nThe browser downloads the index.html file as usual. \nThis <script> element imports and init the wasm code.  \nA simple web file server is enough. \nWarning: the index.html cannot be served from local file without a server, because importing modules is not allowed then for security reasons.\nI will try to use only Rust+Wasm and avoid JavaScript as much as possible.",
+      "selection": {
+        "start": {
+          "line": 78,
+          "character": 1
+        },
+        "end": {
+          "line": 82,
+          "character": 16
+        }
+      }
+    },
+    {
+      "file": "mem6/src/lib.rs",
+      "line": 299,
+      "description": "### wasm_bindgen_start\nRust is a great language to compile to Wasm/WebAssembly.\nWith the use of libraries wasm_bindgen, web_sys and js_sys Rust has access to the browser javascript environment. So it can do most of the things that JavaScript can do.  \nThe imported Wasm module will automatically start the function with attribute `#[wasm_bindgen(start)]`. This function is called only once. ",
+      "selection": {
+        "start": {
+          "line": 296,
+          "character": 1
+        },
+        "end": {
+          "line": 296,
+          "character": 23
+        }
+      }
+    },
+    {
+      "file": "mem6/src/lib.rs",
+      "line": 306,
+      "description": "### div_for_virtual_dom\nThe Rust code will change just the content of the <div id=\"div_for_virtual_dom\">. \nThis is a \"single page web app\". For the browser the index.html is always the same, we only change the interior content of it's dom. ",
+      "selection": {
+        "start": {
+          "line": 306,
+          "character": 61
+        },
+        "end": {
+          "line": 306,
+          "character": 80
+        }
+      }
+    },
+    {
+      "file": "webfolder/mem6/index.html",
+      "line": 77,
+      "description": "### div_for_virtual_dom in index.html\nThis div is the only part of the index.html that will be dynamically changed by the Rust code.  \nThe download of a big wasm file can take some time on slow network. It is nice to warn the user about that.  ",
+      "selection": {
+        "start": {
+          "line": 67,
+          "character": 1
+        },
+        "end": {
+          "line": 77,
+          "character": 13
+        }
+      }
+    },
+    {
+      "file": "webfolder/mem6/index.html",
+      "line": 66,
+      "description": "### noscript warning\nWasm is using the javascript engine deep inside.  \nIf JavaScript is disabled, also wasm cannot run.  ",
+      "selection": {
+        "start": {
+          "line": 57,
+          "character": 1
+        },
+        "end": {
+          "line": 66,
+          "character": 18
+        }
+      }
+    },
+    {
+      "file": "mem6/src/lib.rs",
+      "line": 325,
+      "description": " ### start_router\n After preparing the environment (websocket, RootRenderingComponent, vdom, fetch config data) I start the router. It will listen to the event `hashchange`.  \n For example when the URL changes to index.html#p04.",
+      "selection": {
+        "start": {
+          "line": 325,
+          "character": 12
+        },
+        "end": {
+          "line": 325,
+          "character": 24
+        }
+      }
+    },
+    {
+      "file": "mem6/src/routerimplmod.rs",
+      "line": 45,
+      "description": "### update_local_route_from_root\nThe short_local_route (url hash) `ex. #p04` defines a `local_route`. This is the name of the html template to fetch from the web server. Than it is prepared and saved in html_template sub_templates fields.\nThe data in the struct is prepared, finally we call `vdom.schedule_render();`.",
+      "selection": {
+        "start": {
+          "line": 41,
+          "character": 8
+        },
+        "end": {
+          "line": 41,
+          "character": 36
+        }
+      }
+    },
+    {
+      "file": "mem6/src/rootrenderingcomponentmod.rs",
+      "line": 51,
+      "description": "### render()\nThis is the only method that is called when the rendering is scheduled. \nIt is defined in the crate `dodrio: the vdom library`.   \nFrom here we then call functions to render different UI depending on the data state. ",
+      "selection": {
+        "start": {
+          "line": 51,
+          "character": 8
+        },
+        "end": {
+          "line": 51,
+          "character": 14
+        }
+      }
+    },
+    {
+      "file": "mem6/Cargo.toml",
+      "line": 29,
+      "description": "### dodrio\n<github.com/fitzgen/dodrio> is a virtual DOM library for Rust+Wasm.  \nThe vdom approach aims to make it easier for the developer to think about the dom changes. The classic approach is to react to en event and then programatically modify the dom. The problem is that it becomes quickly very complex. It is difficult to think (and test) an outcome after a long sequence of events.  \nIt is easier to think about the dom as a \"state machine\". The virtual dom is rendered from scratch every single time. The rendering depends only on the `state data` that is now in the data model (a struct called RootRenderingComponent). So changing this struct (data model) and scheduling the rendering, will result in a different vdom. No other complications around that. Pure simple. Easy to think, easy to test.     \nThen the original dom is modified to resemble the vdom. Modifying the dom is slow. To make it efficient, there is some smart caching and diff-ing in the library, to make the number of changes as small and efficient as possible.  \nIn this way we have a clear separation between data (RootRenderingComponent) and UI (code to render html virtual dom).  "
+    },
+    {
+      "file": "mem6/Cargo.toml",
+      "line": 31,
+      "description": "### crates.io or github or path\nIf the newest version of dodrio on crates.io is not actual enought,  \nin cargo.toml we can depend on github or local path also.  \nSo we can follow the codeflow and change something if we need to.  ",
+      "selection": {
+        "start": {
+          "line": 29,
+          "character": 1
+        },
+        "end": {
+          "line": 31,
+          "character": 33
+        }
+      }
+    },
+    {
+      "file": "mem6/src/rootrenderingcomponentmod.rs",
+      "line": 22,
+      "description": "### data model\nThe struct RootRenderingComponent contains ALL the data that is needed to render the UI. I separated the data in sub-structs, just for clarity.  \nWhen an event occures, we just change the data and then schedule the rendering.  \nInside the event code we don't bother about the dom change !    \nWe have a clear separation between data and User-Interface because of that.  \n",
+      "selection": {
+        "start": {
+          "line": 13,
+          "character": 1
+        },
+        "end": {
+          "line": 22,
+          "character": 2
+        }
+      }
+    },
+    {
+      "file": "mem6/src/rootrenderingcomponentmod.rs",
+      "line": 64,
+      "description": "### render_template ()\nThe function `render_template` will read the html of the template and create dodrio vdom elements in the same sort order. Before some elements/attributes there are comments or `data-` attributes that change the next element/attribute. These are not visible, so the template is still a regular html document that the graphical designer can look and modify statically without dinamic elements. The programmer than adds/modify the `replace elements or attributes`.  \nThe result is the `dodrio:Node` that represents the vdom.  \nThe vdom library then diffs and modify the real dom.  ",
+      "selection": {
+        "start": {
+          "line": 58,
+          "character": 1
+        },
+        "end": {
+          "line": 64,
+          "character": 15
+        }
+      }
+    },
+    {
+      "file": "webfolder/mem6/p05_choose_game.html",
+      "line": 23,
+      "description": "### templating variables\nHere we can see a html template with the replace `comments` ex. <!--t=game_name--> and `data- attributes` ex. `data-on-click=\"game_type_left_onclick\"`.",
+      "selection": {
+        "start": {
+          "line": 17,
+          "character": 24
+        },
+        "end": {
+          "line": 17,
+          "character": 62
+        }
+      }
+    },
+    {
+      "file": "mem6/src/htmltemplateimplmod.rs",
+      "line": 41,
+      "description": "### call_fn_string\nThis fn will replace the next text element after <!--t=fn_name--> or the next attribute value after `data-t-style=\"fn_name\"` with a string.",
+      "selection": {
+        "start": {
+          "line": 41,
+          "character": 8
+        },
+        "end": {
+          "line": 41,
+          "character": 22
+        }
+      }
+    },
+    {
+      "file": "mem6/src/htmltemplateimplmod.rs",
+      "line": 261,
+      "description": "### call_fn_node\nThis fn will replace the next element after <!--n=fn_name--> with a Node.",
+      "selection": {
+        "start": {
+          "line": 261,
+          "character": 8
+        },
+        "end": {
+          "line": 261,
+          "character": 20
+        }
+      }
+    },
+    {
+      "file": "mem6/src/htmltemplateimplmod.rs",
+      "line": 296,
+      "description": "### call_fn_vec_nodes\nThis fn will replace the next element after <!--vn=fn_name--> with a Vector of Nodes.",
+      "selection": {
+        "start": {
+          "line": 296,
+          "character": 8
+        },
+        "end": {
+          "line": 296,
+          "character": 25
+        }
+      }
+    },
+    {
+      "file": "mem6/src/htmltemplateimplmod.rs",
+      "line": 19,
+      "description": "### call_fn_boolean\nThis fn will remove the next element after <!--b=fn_name--> if the result is `false`.",
+      "selection": {
+        "start": {
+          "line": 19,
+          "character": 8
+        },
+        "end": {
+          "line": 19,
+          "character": 23
+        }
+      }
+    },
+    {
+      "file": "mem6/src/htmltemplateimplmod.rs",
+      "line": 98,
+      "description": "### call_fn_listener\nThis fn will add a listener to the element after `data-on-click=\"fn_name\"`.",
+      "selection": {
+        "start": {
+          "line": 95,
+          "character": 8
+        },
+        "end": {
+          "line": 95,
+          "character": 24
+        }
+      }
+    }
+  ],
+  "description": "The first tour describes the start of the wasm module, the routing, the html templating and finally rendering.",
+  "github_url": "https://github.com",
+  "github_user": "LucianoBestia",
+  "github_repo": "mem6_game",
+  "github_branch": "master"
+}
