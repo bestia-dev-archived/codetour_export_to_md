@@ -40,3 +40,7 @@ Now I created a md from CodeTour and it is amazing:
 The step by step approach jumping from module to module is great.  
 It just hides all the other non-important code for basic human understanding of the code flow.  
 And the links are "alive", they go to the actual code.  
+
+## develop
+
+Clone the repo  

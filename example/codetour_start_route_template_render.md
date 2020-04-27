@@ -70,6 +70,7 @@ The download of a big wasm file can take some time on slow network. It is nice t
 
 ##### step 4 of 18 [View code in GitHub](https://github.com/LucianoBestia/mem6_game/blob/master/webfolder/mem6/index.html#L77)
 ```html
+#//---------------------- selection start ----------------------
       <!-- display a text while waiting for wasm download. It can take some time. -->
       <div id="div_for_virtual_dom">
             <h2>

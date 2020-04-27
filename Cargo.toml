@@ -1,6 +1,6 @@
 [package]
 name = "codetour_export_to_md"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Luciano <luciano.bestia@gmail.com>"]
 edition = "2018"
 
