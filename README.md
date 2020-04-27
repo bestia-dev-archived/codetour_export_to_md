@@ -50,9 +50,9 @@ And the links are "alive", they go to the actual code.
 Clone the repo  
 `git clone git@github.com:LucianoBestia/codetour_export_to_md.git`  
 Use prepared cargo make scripts:  
-`clear; cargo make release`
-`clear; cargo make run_rel1`
-The result is :
+`clear; cargo make release`  
+`clear; cargo make run_rel1`  
+The result is :  
 `example/codetour_start_route_template_render.md`  
 
 [comment]: # (lmake_readme exclude end A)  
