@@ -51,6 +51,14 @@ skip_core_tasks = true
         "echo target/release/${CARGO_MAKE_CRATE_NAME}",
         "target/release/${CARGO_MAKE_CRATE_NAME} ",
     ]
+
+    [tasks.run_rel2]
+    description = "run target/release/${CARGO_MAKE_CRATE_NAME} --folder=example/.tours"
+    clear = true
+    script = [
+        "echo target/release/${CARGO_MAKE_CRATE_NAME}  --folder=example/.tours",
+        "target/release/${CARGO_MAKE_CRATE_NAME}  --folder=example/.tours",
+    ]
 	
     [tasks.fmt]
     description = "format code and git commit before"
