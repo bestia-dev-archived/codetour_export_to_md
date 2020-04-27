@@ -3,6 +3,7 @@ name = "codetour_export_to_md"
 version = "0.1.1"
 authors = ["Luciano <luciano.bestia@gmail.com>"]
 edition = "2018"
+description = "proof-of-concept of export to md from CodeTour"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

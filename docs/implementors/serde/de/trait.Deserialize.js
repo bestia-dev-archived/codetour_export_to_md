@@ -1,0 +1,9 @@
+(function() {var implementors = {};
+implementors["codetour_export_to_md"] = [{"text":"impl&lt;'de&gt; <a class=\"trait\" href=\"https://docs.rs/serde/1.0.106/serde/de/trait.Deserialize.html\" title=\"trait serde::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"struct\" href=\"codetour_export_to_md/struct.Position.html\" title=\"struct codetour_export_to_md::Position\">Position</a>","synthetic":false,"types":["codetour_export_to_md::Position"]},{"text":"impl&lt;'de&gt; <a class=\"trait\" href=\"https://docs.rs/serde/1.0.106/serde/de/trait.Deserialize.html\" title=\"trait serde::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"struct\" href=\"codetour_export_to_md/struct.Selection.html\" title=\"struct codetour_export_to_md::Selection\">Selection</a>","synthetic":false,"types":["codetour_export_to_md::Selection"]},{"text":"impl&lt;'de&gt; <a class=\"trait\" href=\"https://docs.rs/serde/1.0.106/serde/de/trait.Deserialize.html\" title=\"trait serde::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"struct\" href=\"codetour_export_to_md/struct.Step.html\" title=\"struct codetour_export_to_md::Step\">Step</a>","synthetic":false,"types":["codetour_export_to_md::Step"]},{"text":"impl&lt;'de&gt; <a class=\"trait\" href=\"https://docs.rs/serde/1.0.106/serde/de/trait.Deserialize.html\" title=\"trait serde::de::Deserialize\">Deserialize</a>&lt;'de&gt; for <a class=\"struct\" href=\"codetour_export_to_md/struct.Tour.html\" title=\"struct codetour_export_to_md::Tour\">Tour</a>","synthetic":false,"types":["codetour_export_to_md::Tour"]}];
+
+            if (window.register_implementors) {
+                window.register_implementors(implementors);
+            } else {
+                window.pending_implementors = implementors;
+            }
+        })()

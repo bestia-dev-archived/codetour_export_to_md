@@ -1,6 +1,8 @@
 # codetour_export_to_md
 
 [comment]: # (lmake_readme cargo.toml data start)
+version: 0.1.1  date: 2020-04-27 authors: Luciano  
+**proof-of-concept of export to md from CodeTour**
 
 [comment]: # (lmake_readme cargo.toml data end)
 
@@ -41,6 +43,16 @@ The step by step approach jumping from module to module is great.
 It just hides all the other non-important code for basic human understanding of the code flow.  
 And the links are "alive", they go to the actual code.  
 
-## develop
+[comment]: # (lmake_readme exclude start A)  
+
+## development
 
 Clone the repo  
+`git clone git@github.com:LucianoBestia/codetour_export_to_md.git`  
+Use prepared cargo make scripts:  
+`clear; cargo make release`
+`clear; cargo make run_rel1`
+The result is :
+`example/codetour_start_route_template_render.md`  
+
+[comment]: # (lmake_readme exclude end A)  
