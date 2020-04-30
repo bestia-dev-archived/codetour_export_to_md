@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["delimiter_for_code_start",""],["main",""]],"struct":[["Position",""],["Selection",""],["Step",""],["Tour",""]]});
+initSidebarItems({"fn":[["delimiter_for_code_start","return md code definition from file extension"],["enable_ansi_support",""],["export_all_tours",""],["main","the default is the subfolder .tour inside the current folder for other cases add the argument \"folder\""]],"struct":[["Position",""],["Selection",""],["Step",""],["Tour",""]]});

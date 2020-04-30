@@ -1,44 +1,55 @@
 // region: lmake_readme include "readme.md" //! A
-
+//! # codetour_export_to_md
+//!
+//! version: 0.1.25  date: 2020-04-30 authors: Luciano  
+//! **Export CodeTour file to md**
+//!
+//!
+//! CodeTour is a fantastic extension for VSCode. Kudos to the authors.  
+//! <https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour>  
+//! Every CodeTour contains steps.  
+//! Each step has a description and a link to the file and line number in the source code.  
+//! No more out of sync examples in the documentation.  
+//! This type of documentation is meant to be used for code flow explanation.  
+//! To show other programmers the important information step by step in a logical order for humans.  
+//! This extension for now works only inside VSCode. That is a problem for coders with other editors.  
+//!
+//! ## markdown
+//!
+//! In the present version (2020-04-27) the extension has no functionality to export to a markdown file.  
+//! I don't have enough knowledge in vs code extensions and Typescript to make a PR contribution.  
+//! So I make a rust tiny small CLI program.  
+//! I prepared this project as a proof of concept how the "export to md" could look like.  
+//! The resulting md is very nice. It is a file and therefore it can be committed to Github.  
+//! In the md there are links to the source code on Github.  
+//! This way all coders can follow the code flow on the actual code.  
+//!
+//! ## example
+//!
+//! I copied to the folder example/ a few files from my other project where I use CodeTour.  
+//! There are 2 similar *.tour files. The CLI will export all tours files in that folder.  
+//! Without any arguments the CLI will look at the standard `.tour/` folder.  
+//! If the files are in another folder, like for my example, the argument is like this:  
+//! `codetour_export_to_md folder=example/.tours`  
+//!
+//! ## GitHub and working example
+//!
+//! In my other project I tried to write some documentation about the code flow.  
+//! It was horrific.  
+//! I avoided copy/paste the source code because in no time it is obsolete and misleading.  
+//! <https://github.com/LucianoBestia/mem6_game/blob/master/CodeFlow.md>  
+//! Now I exported the md from CodeTour and it is amazing:  
+//! <https://github.com/LucianoBestia/mem6_game/blob/master/codetour_start_route_template_render.md>  
+//! The step by step approach jumping from module to module is great.  
+//! It just hides all the other non-important code for basic human understanding of the code flow.  
+//! And the links are "alive", they go to the actual code in Github.  
+//!
 // endregion: lmake_readme include "readme.md" //! A
 
-use ansi_term::Colour::{Green, Red, Yellow};
-use clap::App;
-use glob::glob;
-use serde_derive::{Deserialize, Serialize};
-use std::env;
-use std::fs;
-use unwrap::unwrap;
+mod lib_internal;
 
-#[derive(Serialize, Deserialize, Clone)]
-pub struct Position {
-    line: usize,
-    character: usize,
-}
-#[derive(Serialize, Deserialize, Clone)]
-pub struct Selection {
-    start: Position,
-    end: Position,
-}
-#[derive(Serialize, Deserialize, Clone)]
-pub struct Step {
-    file: String,
-    line: usize,
-    description: String,
-    selection: Option<Selection>,
-}
-#[derive(Serialize, Deserialize, Clone)]
-pub struct Tour {
-    tour: String,
-    title: String,
-    steps: Vec<Step>,
-    description: String,
-    // additional fields that I suggest for github
-    github_url: String,
-    github_user: String,
-    github_repo: String,
-    github_branch: String,
-}
+use clap::App;
+use std::env;
 
 /// the default is the subfolder .tour inside the current folder
 /// for other cases add the argument "folder"
@@ -64,121 +75,10 @@ fn main() {
         Some(folder) => folder,
         None => ".tours",
     };
-    println!("folder: {}", &folder);
-    //find all files in tour/*.tour
-    for filename_result in unwrap!(glob(&format!("{}/*.tour", folder))) {
-        let filename_pathbuff = unwrap!(filename_result);
-        let filename_tour = unwrap!(filename_pathbuff.to_str());
-        println!("file tour: {}", Green.paint(filename_tour));
-        // read tour file
-        let tour = unwrap!(fs::read_to_string(filename_tour));
-        let text_len = tour.len();
-        let tour: Tour = unwrap!(serde_json::from_str(&tour));
-        let mut md_text = String::with_capacity(text_len * 4);
-
-        md_text.push_str(&format!("# {}\n", &tour.title));
-        md_text.push_str(&format!("{}\n", &tour.description));
-        for (step_number, step) in tour.steps.iter().enumerate() {
-            //enumerator is zero-based.
-            // I need one-based.
-            let step_number = step_number + 1;
-            // the step description is not really markdown
-            // temporary I have to escape the <> symbols
-            let description = step.description.replace("<", "\\<").replace(">", "\\>");
-            // inside the description is also the step title with ###
-            md_text.push_str(&format!("{}\n\n", &description));
-
-            md_text.push_str(&format!(
-                "##### step {} of {} ",
-                step_number,
-                tour.steps.len()
-            ));
-            md_text.push_str(&format!(
-                "[View code in GitHub]({}/{}/{}/blob/{}/{}#L{})\n",
-                tour.github_url,
-                tour.github_user,
-                tour.github_repo,
-                tour.github_branch,
-                step.file,
-                step.line,
-            ));
-
-            //open the file and take 10 lines before line
-            let filename_code = format!("{}/{}", folder.replace("/.tours", ""), &step.file);
-            println!("file code: {}", &filename_code);
-            let step_code = unwrap!(fs::read_to_string(&filename_code));
-            md_text.push_str(&delimiter_for_code_start(&filename_code));
-            for (i, line) in step_code.lines().enumerate() {
-                // the enumerator is zero-based.
-                // I would like here one-based.
-                let i = i + 1;
-                // selection of code is optional
-                if let Some(selection) = &step.selection {
-                    if i < selection.start.line && i < selection.end.line - 10 {
-                        //nothing
-                    } else if i < selection.start.line {
-                        md_text.push_str(line);
-                        md_text.push_str("\n");
-                    } else if i <= selection.end.line {
-                        // I need a way to show the user selection
-                        if i == selection.start.line {
-                            md_text.push_str(
-                            "#//---------------------- selection start ----------------------\n",
-                        );
-                        }
-                        md_text.push_str(line);
-                        md_text.push_str("\n");
-                        if i == selection.end.line {
-                            md_text.push_str(
-                            "#//----------------------- selection end -----------------------\n",
-                        );
-                        }
-                    } else {
-                        md_text.push_str("```\n");
-                        break;
-                    }
-                } else {
-                    // selection=none; write 10 lines prior to step line
-                    if i < step.line - 10 {
-                        //nothing
-                    } else if i <= step.line {
-                        md_text.push_str(line);
-                        md_text.push_str("\n");
-                    } else {
-                        md_text.push_str("```\n");
-                        break;
-                    }
-                }
-            }
-        }
-        //save the file
-        let filename_md = format!("{}.md", &tour.tour);
-        println!("saved md: {}", Green.paint(&filename_md));
-        let _x = fs::write(&format!("{}.md", filename_md), md_text);
-    }
+    println!("folder: {}", folder);
+    lib_for_main::export_all_tours(folder);
     println!("Export ended");
 }
-
-/// return md code definition from file extension
-pub fn delimiter_for_code_start(filename_code: &str) -> String {
-    let pos = filename_code.rfind('.');
-    let lang = match pos {
-        Some(pos) => {
-            let file_extension = &filename_code[pos + 1..];
-            if file_extension == "rs" {
-                "```rust".to_string()
-            } else {
-                format!("```{}", file_extension)
-            }
-        }
-        None => format!("```{}", ""),
-    };
-    //return
-    format!("{}\n", &lang)
-}
-
-pub fn export_all_tours() {}
-
 // region: different function code for Linux and Windows
 #[cfg(target_family = "windows")]
 /// only on windows "enable ansi support" must be called

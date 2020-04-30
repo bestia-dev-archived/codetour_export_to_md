@@ -1,15 +1,14 @@
 [package]
 name = "codetour_export_to_md"
-version = "0.1.24"
+version = "0.1.27"
 authors = ["Luciano <luciano.bestia@gmail.com>"]
 edition = "2018"
-description = "Export CodeTour file to md"
+description = "Export CodeTour files to md"
 repository = "https://github.com/LucianoBestia/codetour_export_to_md"
 readme = "README.md"
 license = "MIT"
 keywords = ["rust", "make"]
 categories = ["development-tools::build-utils"]
-
 # publish as a cargo tool. Only this files.
 publish = true
 include = [
@@ -18,7 +17,6 @@ include = [
     "README.md",
     "src/*",
 ]
-
 
 [dependencies]
 unwrap = "1.2.1"
