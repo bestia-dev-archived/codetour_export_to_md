@@ -48,7 +48,7 @@ skip_core_tasks = true
     description = "run target/release/${CARGO_MAKE_CRATE_NAME}"
     clear = true
     script = [
-        "echo target/release/${CARGO_MAKE_CRATE_NAME}",
+        "echo $ target/release/${CARGO_MAKE_CRATE_NAME}",
         "target/release/${CARGO_MAKE_CRATE_NAME} ",
     ]
 
@@ -56,7 +56,7 @@ skip_core_tasks = true
     description = "run target/release/${CARGO_MAKE_CRATE_NAME} --folder=example/.tours"
     clear = true
     script = [
-        "echo target/release/${CARGO_MAKE_CRATE_NAME}  --folder=example/.tours",
+        "echo $ target/release/${CARGO_MAKE_CRATE_NAME}  --folder=example/.tours",
         "target/release/${CARGO_MAKE_CRATE_NAME}  --folder=example/.tours",
     ]
 	
@@ -95,7 +95,7 @@ skip_core_tasks = true
     description = "push the commits to github, uses ssh agent"
     clear = true
     script = [
-        "echo git push",
+        "echo $ git push",
         "git push",
         "echo after successful git push, use $ cargo make crates_io_dry_run",
         
@@ -105,7 +105,7 @@ skip_core_tasks = true
 	clear = true
 	description = "prepare before publishing to crates.io with dry-run"
 	script = [
-        "echo cargo publish --dry-run",
+        "echo $ cargo publish --dry-run",
         "cargo publish --dry-run",
         "echo after successful dry-run, use $ cargo make crates_io_publish",
     ]
@@ -191,7 +191,7 @@ description = "build for release"
 clear = true
 private = true
 script = [
-    "echo cargo build --release",
+    "echo $ cargo build --release",
     "cargo build --release",
     "echo after successful testing, run $ cargo make doc",
     ]
@@ -215,7 +215,7 @@ description = "cargo fmt"
 clear = true
 private = true
 script = [
-    "echo cargo fmt",
+    "echo $ cargo fmt",
     "cargo fmt",
     "echo after successful fmt and git commit, run $ cargo make gitpush",
 ]
@@ -246,7 +246,7 @@ clear = true
 private = true
 description = "git tag -f -a v${CARGO_MAKE_CRATE_VERSION} -m version_${CARGO_MAKE_CRATE_VERSION}"
 script = [
-	"echo git tag -f -a v${CARGO_MAKE_CRATE_VERSION} -m version_${CARGO_MAKE_CRATE_VERSION}",
+	"echo $ git tag -f -a v${CARGO_MAKE_CRATE_VERSION} -m version_${CARGO_MAKE_CRATE_VERSION}",
     "git tag -f -a v${CARGO_MAKE_CRATE_VERSION} -m version_${CARGO_MAKE_CRATE_VERSION}"
 ]		  
 
