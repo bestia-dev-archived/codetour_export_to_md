@@ -1,4 +1,4 @@
-# project_name/Makefile.toml
+# codetour_export_to_md/Makefile.toml
 # https://github.com/sagiegurari/cargo-make/blob/master/src/lib/Makefile.stable.toml
 
 # DIFFERENT VARIANTS of makefile.toml
@@ -37,7 +37,7 @@ skip_core_tasks = true
     clear = true
     dependencies = [
 		# Binaries version is date
-        # "lmake_version_from_date"
+        # "lmake_version_from_date",
         # Library version is semver
         "semver_increment_patch",	
         "build_release",
@@ -97,8 +97,7 @@ skip_core_tasks = true
     script = [
         "echo $ git push",
         "git push",
-        "echo after successful git push, use $ cargo make crates_io_dry_run",
-        
+        "echo after successful git push, use $ cargo make crates_io_dry_run", 
     ]
 
 	[tasks.crates_io_dry_run]
@@ -230,15 +229,21 @@ script= ["lmake_readme"]
 clear = true
 private = true
 description = "call cargo doc"
-command="cargo"
-args=["doc","--no-deps","--document-private-items"]
+script=[
+    "echo $ cargo doc --no-deps --document-private-items",
+    "cargo doc --no-deps --document-private-items",
+    "echo $ codetour_export_to_md",
+    "codetour_export_to_md",
+    ]
 
 [tasks.doc_copy]
 clear = true
 private = true
 description = "copy doc folder as docs (out of folder target), so it can be git comitted"
 script = [
-    "\\rsync -avz --delete-after target/doc/*  docs/"
+    "echo $ \\rsync -avz --delete-after target/doc/*  docs/",
+    "\\rsync -avz --delete-after target/doc/*  docs/",
+    "echo after successful doc, run cargo make fmt msg_for_commit",
 ]
 
 [tasks.gittag]
@@ -254,7 +259,9 @@ script = [
 clear = true
 private = true
 description = "publish to crates.io."
-script = ["cargo publish",
+script = [
+"echo $ cargo publish",
+"cargo publish",
 ]
 
 [tasks.post_build_dev]

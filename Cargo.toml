@@ -1,7 +1,7 @@
 [package]
 name = "codetour_export_to_md"
 version = "0.1.29"
-authors = ["Luciano <luciano.bestia@gmail.com>"]
+authors = ["Luciano Bestia <luciano.bestia@gmail.com>"]
 edition = "2018"
 description = "Export CodeTour files to md"
 repository = "https://github.com/LucianoBestia/codetour_export_to_md"

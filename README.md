@@ -1,7 +1,7 @@
 # codetour_export_to_md
 
 [comment]: # (lmake_readme cargo.toml data start)
-version: 0.1.29  date: 2020-04-30 authors: Luciano  
+version: 0.1.29  date: 2020-04-30 authors: Luciano Bestia  
 **Export CodeTour files to md**
 
 [comment]: # (lmake_readme cargo.toml data end)
@@ -46,6 +46,12 @@ It just hides all the other non-important code for basic human understanding of 
 And the links are "alive", they go to the actual code in Github.  
 
 [comment]: # (lmake_readme exclude start A)  
+
+## install
+
+Install from crates.io:  
+`cargo install codetour_export_to_md`  
+run with no parameters. Best together with `cargo doc`.  
 
 ## development
 
