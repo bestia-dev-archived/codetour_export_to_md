@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["delimiter_for_code_start","return md code definition from file extension"],["export_all_tours",""]],"struct":[["Position",""],["Selection",""],["Step",""],["Tour",""]]});
