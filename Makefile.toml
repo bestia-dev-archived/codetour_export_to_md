@@ -95,14 +95,20 @@ skip_core_tasks = true
     description = "push the commits to github, uses ssh agent"
     clear = true
     script = [
+        "echo git push",
         "git push",
+        "echo after successful git push, use $ cargo make crates_io_dry_run",
+        
     ]
 
 	[tasks.crates_io_dry_run]
 	clear = true
 	description = "prepare before publishing to crates.io with dry-run"
-	command = "cargo"
-	args = ["publish","--dry-run"]
+	script = [
+        "echo cargo publish --dry-run",
+        "cargo publish --dry-run",
+        "echo after successful dry-run, use $ cargo make crates_io_publish",
+    ]
 
     [tasks.crates_io_publish]
 	clear = true
@@ -184,8 +190,11 @@ script= ["lmake_version_from_date"]
 description = "build for release"
 clear = true
 private = true
-command = "cargo"
-args = ["build","--release"]
+script = [
+    "echo cargo build --release",
+    "cargo build --release",
+    "echo after successful testing, run $ cargo make doc",
+    ]
 
 [tasks.cargo_audit]
 description = "cargo audit - for security vulnerabilities"
@@ -205,8 +214,11 @@ args = ["commit","-a","-m", "${@}"]
 description = "cargo fmt"
 clear = true
 private = true
-command = "cargo"
-args = ["fmt"]
+script = [
+    "echo cargo fmt",
+    "cargo fmt",
+    "echo after successful fmt and git commit, run $ cargo make gitpush",
+]
 
 [tasks.include_readme]
 clear = true
@@ -242,8 +254,8 @@ script = [
 clear = true
 private = true
 description = "publish to crates.io."
-command = "cargo"
-args = ["publish"]
+script = ["cargo publish",
+]
 
 [tasks.post_build_dev]
 clear=true
