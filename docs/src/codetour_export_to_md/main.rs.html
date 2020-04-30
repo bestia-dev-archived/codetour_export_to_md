@@ -96,7 +96,7 @@
 <span class="comment">// region: lmake_readme include &quot;readme.md&quot; //! A</span>
 <span class="doccomment">//! # codetour_export_to_md</span>
 <span class="doccomment">//! </span>
-<span class="doccomment">//! version: 0.1.27  date: 2020-04-30 authors: Luciano  </span>
+<span class="doccomment">//! version: 0.1.29  date: 2020-04-30 authors: Luciano  </span>
 <span class="doccomment">//! **Export CodeTour files to md**</span>
 <span class="doccomment">//! </span>
 <span class="doccomment">//! </span>
@@ -171,7 +171,7 @@
         <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;.tours&quot;</span>,
     };
     <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;folder: {}&quot;</span>, <span class="ident">folder</span>);
-    <span class="ident">lib_for_main</span>::<span class="ident">export_all_tours</span>(<span class="ident">folder</span>);
+    <span class="ident">lib_internal</span>::<span class="ident">export_all_tours</span>(<span class="ident">folder</span>);
     <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Export ended&quot;</span>);
 }
 <span class="comment">// region: different function code for Linux and Windows</span>

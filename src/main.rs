@@ -1,7 +1,7 @@
 // region: lmake_readme include "readme.md" //! A
 //! # codetour_export_to_md
 //! 
-//! version: 0.1.27  date: 2020-04-30 authors: Luciano  
+//! version: 0.1.29  date: 2020-04-30 authors: Luciano  
 //! **Export CodeTour files to md**
 //! 
 //! 
@@ -76,7 +76,7 @@ fn main() {
         None => ".tours",
     };
     println!("folder: {}", folder);
-    lib_for_main::export_all_tours(folder);
+    lib_internal::export_all_tours(folder);
     println!("Export ended");
 }
 // region: different function code for Linux and Windows
