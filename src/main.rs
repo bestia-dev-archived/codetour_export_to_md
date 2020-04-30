@@ -1,3 +1,7 @@
+// region: lmake_readme include "readme.md" //! A
+
+// endregion: lmake_readme include "readme.md" //! A
+
 use ansi_term::Colour::{Green, Red, Yellow};
 use clap::App;
 use glob::glob;

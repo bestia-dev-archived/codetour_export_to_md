@@ -2,13 +2,13 @@
 
 [comment]: # (lmake_readme cargo.toml data start)
 version: 0.1.1  date: 2020-04-27 authors: Luciano  
-**proof-of-concept of export to md from CodeTour**
+**export to md from CodeTour**
 
 [comment]: # (lmake_readme cargo.toml data end)
 
 CodeTour is a fantastic extension for VSCode. Kudos to the authors.  
 <https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour>  
-CodeTour contains steps.  
+Every CodeTour contains steps.  
 Each step has a description and a link to the file and line number in the source code.  
 No more out of sync examples in the documentation.  
 This type of documentation is meant to be used for code flow explanation.  
@@ -23,7 +23,7 @@ So I make a rust tiny small CLI program.
 I prepared this project as a proof of concept how the "export to md" could look like.  
 The resulting md is very nice. It is a file and therefore it can be committed to Github.  
 In the md there are links to the source code on Github.  
-That way all coders can follow the code flow on the actual code.  
+This way all coders can follow the code flow on the actual code.  
 
 ## example
 
