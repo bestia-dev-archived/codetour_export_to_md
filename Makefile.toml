@@ -217,6 +217,7 @@ script = [
     "echo $ cargo fmt",
     "cargo fmt",
     "echo after successful fmt and git commit, run $ cargo make gitpush",
+    "echo if the fmt makes changes, just run the same command again."
 ]
 
 [tasks.include_readme]
@@ -234,7 +235,7 @@ script=[
     "cargo doc --no-deps --document-private-items",
     "echo $ codetour_export_to_md",
     "codetour_export_to_md",
-    ]
+]
 
 [tasks.doc_copy]
 clear = true
