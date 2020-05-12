@@ -164,6 +164,6 @@ pub fn export_all_tours(folder: &str) {
         let name = name.to_string();
         let filename_md = format!("{}.md", name);
         println!("saved md: {}", Green.paint(&filename_md));
-        let _x = fs::write(&format!("{}.md", filename_md), md_text);
+        let _x = fs::write(&format!("{}", filename_md), md_text);
     }
 }
