@@ -64,10 +64,7 @@ pub fn delimiter_for_code_start(filename_code: &str) -> String {
 
 pub fn export_all_tours(folder: &str) {
     //read the tour_extended.json
-    let tour_extended = unwrap!(fs::read_to_string(&format!(
-        "{}/tour_extended.json",
-        folder
-    )));
+    let tour_extended = unwrap!(fs::read_to_string("tour_extended.json"));
     let tour_extended: TourExtended = unwrap!(serde_json::from_str(&tour_extended));
 
     //find all files in tour/*.tour
