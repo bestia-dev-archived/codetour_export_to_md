@@ -44,7 +44,7 @@ skip_core_tasks = true
         "post_build_release",
     ]
 
-    [tasks.run_rel1]
+    [tasks.run_rel0]
     description = "run target/release/${CARGO_MAKE_CRATE_NAME}"
     clear = true
     script = [
@@ -52,7 +52,7 @@ skip_core_tasks = true
         "target/release/${CARGO_MAKE_CRATE_NAME} ",
     ]
 
-    [tasks.run_rel2]
+    [tasks.run_rel1]
     description = "run target/release/${CARGO_MAKE_CRATE_NAME} --folder=example/.tours"
     clear = true
     script = [

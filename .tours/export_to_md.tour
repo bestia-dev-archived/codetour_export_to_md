@@ -1,0 +1,75 @@
+{
+  "title": "export_to_md",
+  "steps": [
+    {
+      "file": "src/main.rs",
+      "line": 76,
+      "description": "## start arguments\n\nThe default is to search in the .tours folder."
+    },
+    {
+      "file": "src/main.rs",
+      "line": 79,
+      "description": "## export all tours files\n\nThe function will export all the tours files in one go."
+    },
+    {
+      "file": "src/lib_internal.rs",
+      "line": 68,
+      "description": "## tour_extended.json\n\nSome extended data is in a separate file. Mostly to make links to github."
+    },
+    {
+      "file": "src/lib_internal.rs",
+      "line": 76,
+      "description": "## read file\nRead and deserialize the tour file. It is json."
+    },
+    {
+      "file": "src/lib_internal.rs",
+      "line": 82,
+      "description": "## header\nData of the header and description."
+    },
+    {
+      "file": "src/lib_internal.rs",
+      "line": 97,
+      "description": "## step header\nEvery step has a number and a link to github."
+    },
+    {
+      "file": "src/lib_internal.rs",
+      "line": 112,
+      "description": "## source code file\nRead the source code.",
+      "selection": {
+        "start": {
+          "line": 109,
+          "character": 17
+        },
+        "end": {
+          "line": 109,
+          "character": 30
+        }
+      }
+    },
+    {
+      "file": "src/lib_internal.rs",
+      "line": 135,
+      "description": "## selection fragment\nTake lines defined in selection. At least 10 lines. Added delimiters to make selection visible.",
+      "selection": {
+        "start": {
+          "line": 138,
+          "character": 23
+        },
+        "end": {
+          "line": 138,
+          "character": 27
+        }
+      }
+    },
+    {
+      "file": "src/lib_internal.rs",
+      "line": 148,
+      "description": "## without selection\nIf there is no selection, use the line number."
+    },
+    {
+      "file": "src/lib_internal.rs",
+      "line": 163,
+      "description": "## Save\nSave the md file."
+    }
+  ]
+}

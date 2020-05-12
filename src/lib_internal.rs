@@ -31,13 +31,13 @@ pub struct Step {
 pub struct Tour {
     title: String,
     steps: Vec<Step>,
-    description: String,
+    description: Option<String>,
 }
 
 /// data that I miss in the Tour struct will be in the
 /// tour_extended.json file
 #[derive(Serialize, Deserialize, Clone)]
-pub struct TourExtended{
+pub struct TourExtended {
     github_url: String,
     github_user: String,
     github_repo: String,
@@ -64,7 +64,10 @@ pub fn delimiter_for_code_start(filename_code: &str) -> String {
 
 pub fn export_all_tours(folder: &str) {
     //read the tour_extended.json
-    let tour_extended = unwrap!(fs::read_to_string(&format!("{}/tour_extended.json", folder)));
+    let tour_extended = unwrap!(fs::read_to_string(&format!(
+        "{}/tour_extended.json",
+        folder
+    )));
     let tour_extended: TourExtended = unwrap!(serde_json::from_str(&tour_extended));
 
     //find all files in tour/*.tour
@@ -79,7 +82,9 @@ pub fn export_all_tours(folder: &str) {
         let mut md_text = String::with_capacity(text_len * 4);
 
         md_text.push_str(&format!("# {}\n", &tour.title));
-        md_text.push_str(&format!("{}\n", &tour.description));
+        if let Some(description) = &tour.description {
+            md_text.push_str(&format!("{}\n", description));
+        }
         for (step_number, step) in tour.steps.iter().enumerate() {
             //enumerator is zero-based.
             // I need one-based.
@@ -106,7 +111,7 @@ pub fn export_all_tours(folder: &str) {
             ));
 
             //open the file and take 10 lines before line
-            let filename_code = format!("{}/{}", folder.replace("/.tours", ""), &step.file);
+            let filename_code = format!("{}{}", folder.replace(".tours", ""), &step.file);
             println!("file code: {}", &filename_code);
             let step_code = unwrap!(fs::read_to_string(&filename_code));
             md_text.push_str(&delimiter_for_code_start(&filename_code));
@@ -157,7 +162,6 @@ pub fn export_all_tours(folder: &str) {
         let spl = filename_tour.split("/");
         let name = unwrap!(spl.last());
         let name = name.to_string();
-        let name= name.trim_end_matches(".json") ;
         let filename_md = format!("{}.md", name);
         println!("saved md: {}", Green.paint(&filename_md));
         let _x = fs::write(&format!("{}.md", filename_md), md_text);
