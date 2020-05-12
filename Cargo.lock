@@ -61,7 +61,7 @@ dependencies = [
 
 [[package]]
 name = "codetour_export_to_md"
-version = "0.1.29"
+version = "2020.512.1847"
 dependencies = [
  "ansi_term 0.12.1",
  "clap",

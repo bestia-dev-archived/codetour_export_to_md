@@ -1,10 +1,10 @@
 // region: lmake_readme include "readme.md" //! A
 //! # codetour_export_to_md
-//!
-//! version: 0.1.29  date: 2020-04-30 authors: Luciano Bestia  
+//! 
+//! version: 2020.512.1847  date: 2020-05-12 authors: Luciano Bestia  
 //! **Export CodeTour files to md**
-//!
-//!
+//! 
+//! 
 //! CodeTour is a fantastic extension for VSCode. Kudos to the authors.  
 //! <https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour>  
 //! Every CodeTour contains steps.  
@@ -13,9 +13,9 @@
 //! This type of documentation is meant to be used for code flow explanation.  
 //! To show other programmers the important information step by step in a logical order for humans.  
 //! This extension for now works only inside VSCode. That is a problem for coders with other editors.  
-//!
+//! 
 //! ## markdown
-//!
+//! 
 //! In the present version (2020-04-27) the extension has no functionality to export to a markdown file.  
 //! I don't have enough knowledge in vs code extensions and Typescript to make a PR contribution.  
 //! So I make a rust tiny small CLI program.  
@@ -23,17 +23,17 @@
 //! The resulting md is very nice. It is a file and therefore it can be committed to Github.  
 //! In the md there are links to the source code on Github.  
 //! This way all coders can follow the code flow on the actual code.  
-//!
+//! 
 //! ## example
-//!
+//! 
 //! I copied to the folder example/ a few files from my other project where I use CodeTour.  
 //! There are 2 similar *.tour files. The CLI will export all tours files in that folder.  
 //! Without any arguments the CLI will look at the standard `.tour/` folder.  
 //! If the files are in another folder, like for my example, the argument is like this:  
 //! `codetour_export_to_md folder=example/.tours`  
-//!
+//! 
 //! ## GitHub and working example
-//!
+//! 
 //! In my other project I tried to write some documentation about the code flow.  
 //! It was horrific.  
 //! I avoided copy/paste the source code because in no time it is obsolete and misleading.  
@@ -43,7 +43,7 @@
 //! The step by step approach jumping from module to module is great.  
 //! It just hides all the other non-important code for basic human understanding of the code flow.  
 //! And the links are "alive", they go to the actual code in Github.  
-//!
+//! 
 // endregion: lmake_readme include "readme.md" //! A
 
 mod lib_internal;

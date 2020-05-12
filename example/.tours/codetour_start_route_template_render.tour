@@ -1,5 +1,4 @@
 {
-  "tour": "codetour_start_route_template_render",
   "title": "codetour_start_route_template_render",
   "steps": [
     {
@@ -264,8 +263,4 @@
     }
   ],
   "description": "The first tour describes the start of the wasm module, the routing, the html templating and finally rendering.",
-  "github_url": "https://github.com",
-  "github_user": "LucianoBestia",
-  "github_repo": "mem6_game",
-  "github_branch": "master"
 }

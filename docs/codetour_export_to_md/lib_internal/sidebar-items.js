@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["delimiter_for_code_start","return md code definition from file extension"],["export_all_tours",""]],"struct":[["Position",""],["Selection",""],["Step",""],["Tour",""]]});
+initSidebarItems({"fn":[["delimiter_for_code_start","return md code definition from file extension"],["export_all_tours",""]],"struct":[["Position",""],["Selection",""],["Step",""],["Tour",""],["TourExtended","data that I miss in the Tour struct will be in the tour_extended.json file"]]});

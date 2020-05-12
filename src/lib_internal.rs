@@ -29,11 +29,15 @@ pub struct Step {
 }
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Tour {
-    tour: String,
     title: String,
     steps: Vec<Step>,
     description: String,
-    // additional fields that I suggest for github
+}
+
+/// data that I miss in the Tour struct will be in the
+/// tour_extended.json file
+#[derive(Serialize, Deserialize, Clone)]
+pub struct TourExtended{
     github_url: String,
     github_user: String,
     github_repo: String,
@@ -59,6 +63,10 @@ pub fn delimiter_for_code_start(filename_code: &str) -> String {
 }
 
 pub fn export_all_tours(folder: &str) {
+    //read the tour_extended.json
+    let tour_extended = unwrap!(fs::read_to_string(&format!("{}/tour_extended.json", folder)));
+    let tour_extended: TourExtended = unwrap!(serde_json::from_str(&tour_extended));
+
     //find all files in tour/*.tour
     for filename_result in unwrap!(glob(&format!("{}/*.tour", folder))) {
         let filename_pathbuff = unwrap!(filename_result);
@@ -89,10 +97,10 @@ pub fn export_all_tours(folder: &str) {
             ));
             md_text.push_str(&format!(
                 "[View code in GitHub]({}/{}/{}/blob/{}/{}#L{})\n",
-                tour.github_url,
-                tour.github_user,
-                tour.github_repo,
-                tour.github_branch,
+                tour_extended.github_url,
+                tour_extended.github_user,
+                tour_extended.github_repo,
+                tour_extended.github_branch,
                 step.file,
                 step.line,
             ));
@@ -145,8 +153,12 @@ pub fn export_all_tours(folder: &str) {
                 }
             }
         }
-        //save the file
-        let filename_md = format!("{}.md", &tour.tour);
+        //save the md file with same name
+        let spl = filename_tour.split("/");
+        let name = unwrap!(spl.last());
+        let name = name.to_string();
+        let name= name.trim_end_matches(".json") ;
+        let filename_md = format!("{}.md", name);
         println!("saved md: {}", Green.paint(&filename_md));
         let _x = fs::write(&format!("{}.md", filename_md), md_text);
     }
