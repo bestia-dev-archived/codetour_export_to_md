@@ -262,5 +262,5 @@
       }
     }
   ],
-  "description": "The first tour describes the start of the wasm module, the routing, the html templating and finally rendering.",
+  "description": "The first tour describes the start of the wasm module, the routing, the html templating and finally rendering."
 }
