@@ -10,7 +10,7 @@ use serde_derive::{Deserialize, Serialize};
 use std::fs;
 use unwrap::unwrap;
 
-#[derive(Serialize, Deserialize, Clone,Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Position {
     line: usize,
     character: usize,
@@ -64,7 +64,7 @@ pub fn delimiter_for_code_start(filename_code: &str) -> String {
 
 pub fn export_all_tours(folder: &str) {
     //read the tour_extended.json
-    if let Ok(tour_extended) = fs::read_to_string("tour_extended.json"){
+    if let Ok(tour_extended) = fs::read_to_string("tour_extended.json") {
         let tour_extended: TourExtended = unwrap!(serde_json::from_str(&tour_extended));
 
         //find all files in tour/*.tour
@@ -74,7 +74,10 @@ pub fn export_all_tours(folder: &str) {
             println!("file tour: {}", Green.paint(filename_tour));
             // read tour file
             // todo: this is expect!
-            let tour = unwrap!(fs::read_to_string(filename_tour),"Glob just gave me this filename, it cannot panic.");
+            let tour = unwrap!(
+                fs::read_to_string(filename_tour),
+                "Glob just gave me this filename, it cannot panic."
+            );
             let text_len = tour.len();
             let tour: Tour = unwrap!(serde_json::from_str(&tour));
             let mut md_text = String::with_capacity(text_len * 4);
@@ -110,8 +113,12 @@ pub fn export_all_tours(folder: &str) {
 
                 //open the file and take 10 lines before line
                 let filename_code = format!("{}{}", folder.replace(".tours", ""), &step.file);
-                if let Ok(step_code) = fs::read_to_string(&filename_code){
-                    println!("read file with code: {} line {}", Green.paint(&filename_code), step.line);
+                if let Ok(step_code) = fs::read_to_string(&filename_code) {
+                    println!(
+                        "read file with code: {} line {}",
+                        Green.paint(&filename_code),
+                        step.line
+                    );
                     md_text.push_str(&delimiter_for_code_start(&filename_code));
                     for (i, line) in step_code.lines().enumerate() {
                         // the enumerator is zero-based.
@@ -155,9 +162,9 @@ pub fn export_all_tours(folder: &str) {
                             }
                         }
                     }
-                 } else {
+                } else {
                     println!("File does not exist: {}", Red.paint(&filename_code));
-                 }
+                }
             }
             //save the md file with same name
             let spl = filename_tour.split("/");
