@@ -1,10 +1,5 @@
 # codetour_export_to_md/Makefile.toml
 # https://github.com/sagiegurari/cargo-make/blob/master/src/lib/Makefile.stable.toml
-
-# DIFFERENT VARIANTS of makefile.toml
-# "Libraries" lib.rs differ from "binaries" main.rs
-# "wasm" has special commands for build and other
-# "PWA" has a version number in the worker that must be incremented
  
 [config]
 skip_core_tasks = true
@@ -32,6 +27,14 @@ skip_core_tasks = true
     "post_build_dev",
     ]
 
+    [tasks.test]
+    description = "cargo test"
+    clear = true
+    script = [
+        "echo $ cargo test",
+        "cargo test",
+    ]
+    
     [tasks.release]
     description = "cargo build release"
     clear = true
@@ -45,13 +48,13 @@ skip_core_tasks = true
     ]
 
     [tasks.run_rel0]
-    description = "run target/release/${CARGO_MAKE_CRATE_NAME}"
+    description = "no-argument - target/release/${CARGO_MAKE_CRATE_NAME}"
     clear = true
     script = [
         "echo $ target/release/${CARGO_MAKE_CRATE_NAME}",
-        "target/release/${CARGO_MAKE_CRATE_NAME} ",
+        "target/release/${CARGO_MAKE_CRATE_NAME}",
     ]
-
+    
     [tasks.run_rel1]
     description = "run target/release/${CARGO_MAKE_CRATE_NAME} --folder=example/.tours"
     clear = true
@@ -76,10 +79,21 @@ skip_core_tasks = true
     [tasks.doc]
     description = "cargo doc - create docs from doc comments"
     clear = true
-    dependencies = [
-        "include_readme",
-        "cargo_doc",
-        "doc_copy",
+    script= [
+        "echo $ lmake_readme",
+        # copy data from cargo.toml to readme.md, then include text from readme.md into *.rs doc comments
+        "lmake_readme",
+        "echo $ cargo doc --no-deps --document-private-items",
+        # create doc from doc comments
+        "cargo doc --no-deps --document-private-items",
+        "echo $ codetour_export_to_md",
+        # export code tour to md
+        "codetour_export_to_md",
+        # copy to /docs/ because it is github standard
+        "echo $ rsync -a --info=progress2 --delete-after target/doc docs",
+        "rsync -a --info=progress2 --delete-after target/doc docs",
+        # message to help user with next move
+        "echo after successful doc, run cargo make fmt msg_for_commit",
     ]
     
     [tasks.sshadd]
@@ -124,6 +138,13 @@ skip_core_tasks = true
         "lmake_semver --increment=minor",
     ]
 
+    [tasks.loc]
+    description = "Lines Of Rust Code with tokei"
+    workspace = false
+    clear = true
+    script = [
+        "tokei  -t 'Rust'",
+    ]
 # endregion
 
 [tasks.help_command_order]
@@ -143,7 +164,7 @@ script= [
 "echo 06. cargo make release - build release version, increment semver patch incargo.toml",
 "echo 07. ......run the release build. Cargo make tasks LIST is below.",
 "echo ",
-"echo 08. cargo make doc - includea from cargo.toml to readme.md and from readme.md to main.rs or lib.rs, generates doc and copies to docs folder.",
+"echo 08. cargo make doc - includes from cargo.toml to readme.md and from readme.md to main.rs or lib.rs, generates doc and copies to docs folder.",
 "echo 09. cargo make fmt commit_message - runs git commit and rustfmt",
 "echo 10. cargo make sshadd - run only once - adds identity to ssh-agent for git and publish",
 "echo 11. cargo make gitpush - git push",
@@ -166,7 +187,7 @@ script= [
 [tasks.build_dev]
 clear = true
 private = true
-description = "build in dev mode"
+description = "build in dev/debug mode"
 command = "cargo"
 args = ["build"]
           
@@ -206,8 +227,10 @@ private = true
 description = "git commit with message from argument"
 clear = true
 private = true
-command = "git"
-args = ["commit","-a","-m", "${@}"]
+script = [
+    "git add -A",
+    "git commit -a -m \"${@}\""
+]
 
 [tasks.cargo_fmt]
 description = "cargo fmt"
@@ -218,33 +241,6 @@ script = [
     "cargo fmt",
     "echo after successful fmt and git commit, run $ cargo make gitpush",
     "echo if the fmt makes changes, just run the same command again."
-]
-
-[tasks.include_readme]
-clear = true
-private = true
-description = "copy the content of readme.md into *.rs comments (for the docs)"
-script= ["lmake_readme"]
-
-[tasks.cargo_doc]
-clear = true
-private = true
-description = "call cargo doc"
-script=[
-    "echo $ cargo doc --no-deps --document-private-items",
-    "cargo doc --no-deps --document-private-items",
-    "echo $ codetour_export_to_md",
-    "codetour_export_to_md",
-]
-
-[tasks.doc_copy]
-clear = true
-private = true
-description = "copy doc folder as docs (out of folder target), so it can be git comitted"
-script = [
-    "echo $ \\rsync -avz --delete-after target/doc/*  docs/",
-    "\\rsync -avz --delete-after target/doc/*  docs/",
-    "echo after successful doc, run cargo make fmt msg_for_commit",
 ]
 
 [tasks.gittag]
@@ -268,11 +264,13 @@ script = [
 [tasks.post_build_dev]
 clear=true
 private=true
-script = ["echo build dev end",
+script = [
+    "echo post build dev",
 ]
 
 [tasks.post_build_release]
 clear=true
 private=true
-script = ["echo build release end",
+script = [
+    "echo post build release",
 ]

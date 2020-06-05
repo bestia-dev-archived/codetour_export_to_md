@@ -1,155 +1,154 @@
 {
-  "title": "export_to_md",
-  "steps": [
-    {
-      "file": "src/main.rs",
-      "line": 76,
-      "description": "## start arguments\n\nThe default is to search in the .tours folder.",
-      "selection": {
-        "start": {
-          "line": 74,
-          "character": 1
+    "title": "export_to_md",
+    "steps": [{
+            "file": "src/main.rs",
+            "line": 104,
+            "description": "## start arguments\n\nThe default is to search in the .tours folder.",
+            "selection": {
+                "start": {
+                    "line": 101,
+                    "character": 1
+                },
+                "end": {
+                    "line": 104,
+                    "character": 7
+                }
+            }
         },
-        "end": {
-          "line": 76,
-          "character": 26
-        }
-      }
-    },
-    {
-      "file": "src/main.rs",
-      "line": 79,
-      "description": "## export all tours files\n\nThe function will export all the tours files in one go.",
-      "selection": {
-        "start": {
-          "line": 79,
-          "character": 5
+        {
+            "file": "src/main.rs",
+            "line": 106,
+            "description": "## export all tours files\n\nThe function will export all the tours files in one go.",
+            "selection": {
+                "start": {
+                    "line": 106,
+                    "character": 1
+                },
+                "end": {
+                    "line": 106,
+                    "character": 44
+                }
+            }
         },
-        "end": {
-          "line": 79,
-          "character": 44
-        }
-      }
-    },
-    {
-      "file": "src/lib_internal.rs",
-      "line": 68,
-      "description": "## tour_extended.json\n\nSome extended data is in a separate file. Mostly to make links to github.",
-      "selection": {
-        "start": {
-          "line": 67,
-          "character": 5
+        {
+            "file": "src/lib_internal.rs",
+            "line": 68,
+            "description": "## tour_extended.json\n\nSome extended data is in a separate file. Mostly to make links to github.",
+            "selection": {
+                "start": {
+                    "line": 67,
+                    "character": 5
+                },
+                "end": {
+                    "line": 68,
+                    "character": 85
+                }
+            }
         },
-        "end": {
-          "line": 68,
-          "character": 85
-        }
-      }
-    },
-    {
-      "file": "src/lib_internal.rs",
-      "line": 79,
-      "description": "## read file\nRead and deserialize the tour file. It is json.",
-      "selection": {
-        "start": {
-          "line": 76,
-          "character": 9
+        {
+            "file": "src/lib_internal.rs",
+            "line": 79,
+            "description": "## read file\nRead and deserialize the tour file. It is json.",
+            "selection": {
+                "start": {
+                    "line": 77,
+                    "character": 13
+                },
+                "end": {
+                    "line": 77,
+                    "character": 119
+                }
+            }
         },
-        "end": {
-          "line": 78,
-          "character": 63
-        }
-      }
-    },
-    {
-      "file": "src/lib_internal.rs",
-      "line": 86,
-      "description": "## header\nData of the header and description.",
-      "selection": {
-        "start": {
-          "line": 81,
-          "character": 8
+        {
+            "file": "src/lib_internal.rs",
+            "line": 86,
+            "description": "## header\nData of the header and description.",
+            "selection": {
+                "start": {
+                    "line": 81,
+                    "character": 8
+                },
+                "end": {
+                    "line": 83,
+                    "character": 61
+                }
+            }
         },
-        "end": {
-          "line": 83,
-          "character": 61
-        }
-      }
-    },
-    {
-      "file": "src/lib_internal.rs",
-      "line": 102,
-      "description": "## step header\nEvery step has a number and a link to github.",
-      "selection": {
-        "start": {
-          "line": 95,
-          "character": 11
+        {
+            "file": "src/lib_internal.rs",
+            "line": 102,
+            "description": "## step header\nEvery step has a number and a link to github.",
+            "selection": {
+                "start": {
+                    "line": 96,
+                    "character": 1
+                },
+                "end": {
+                    "line": 102,
+                    "character": 72
+                }
+            }
         },
-        "end": {
-          "line": 102,
-          "character": 42
-        }
-      }
-    },
-    {
-      "file": "src/lib_internal.rs",
-      "line": 119,
-      "description": "## source code file\nRead the source code.",
-      "selection": {
-        "start": {
-          "line": 111,
-          "character": 13
+        {
+            "file": "src/lib_internal.rs",
+            "line": 119,
+            "description": "## source code file\nRead the source code.",
+            "selection": {
+                "start": {
+                    "line": 111,
+                    "character": 13
+                },
+                "end": {
+                    "line": 113,
+                    "character": 73
+                }
+            }
         },
-        "end": {
-          "line": 113,
-          "character": 73
-        }
-      }
-    },
-    {
-      "file": "src/lib_internal.rs",
-      "line": 145,
-      "description": "## selection fragment\nTake lines defined in selection. At least 10 lines. Added delimiters to make selection visible.",
-      "selection": {
-        "start": {
-          "line": 130,
-          "character": 25
+        {
+            "file": "src/lib_internal.rs",
+            "line": 145,
+            "description": "## selection fragment\nTake lines defined in selection. At least 10 lines. Added delimiters to make selection visible.",
+            "selection": {
+                "start": {
+                    "line": 130,
+                    "character": 25
+                },
+                "end": {
+                    "line": 138,
+                    "character": 27
+                }
+            }
         },
-        "end": {
-          "line": 138,
-          "character": 27
-        }
-      }
-    },
-    {
-      "file": "src/lib_internal.rs",
-      "line": 153,
-      "description": "## without selection\nIf there is no selection, use the line number.",
-      "selection": {
-        "start": {
-          "line": 146,
-          "character": 21
+        {
+            "file": "src/lib_internal.rs",
+            "line": 153,
+            "description": "## without selection\nIf there is no selection, use the line number.",
+            "selection": {
+                "start": {
+                    "line": 146,
+                    "character": 21
+                },
+                "end": {
+                    "line": 152,
+                    "character": 51
+                }
+            }
         },
-        "end": {
-          "line": 152,
-          "character": 51
+        {
+            "file": "src/lib_internal.rs",
+            "line": 168,
+            "description": "## Save\nSave the md file.",
+            "selection": {
+                "start": {
+                    "line": 168,
+                    "character": 13
+                },
+                "end": {
+                    "line": 168,
+                    "character": 70
+                }
+            }
         }
-      }
-    },
-    {
-      "file": "src/lib_internal.rs",
-      "line": 166,
-      "description": "## Save\nSave the md file.",
-      "selection": {
-        "start": {
-          "line": 162,
-          "character": 9
-        },
-        "end": {
-          "line": 164,
-          "character": 66
-        }
-      }
-    }
-  ]
+    ]
 }

@@ -1,7 +1,7 @@
 # codetour_export_to_md
 
 [comment]: # (lmake_readme cargo.toml data start)
-version: 2020.512.2010  date: 2020-05-12 authors: Luciano Bestia  
+version: 2020.605.1103  date: 2020-06-05 authors: Luciano Bestia  
 **Export CodeTour files to md**
 
 [comment]: # (lmake_readme cargo.toml data end)
@@ -44,6 +44,32 @@ Now I exported the md from CodeTour and it is amazing:
 The step by step approach jumping from module to module is great.  
 It just hides all the other non-important code for basic human understanding of the code flow.  
 And the links are "alive", they go to the actual code in Github.  
+
+## makefile.toml
+
+I use it inside `makefile.toml` when creating docs like this:\
+
+```toml
+[tasks.doc]
+    description = "cargo doc - create docs from doc comments"
+    clear = true
+    script= [
+        "echo $ lmake_readme",
+        # copy data from cargo.toml to readme.md, then include text from readme.md into *.rs doc comments
+        "lmake_readme",
+        "echo $ cargo doc --no-deps --document-private-items",
+        # create doc from doc comments
+        "cargo doc --no-deps --document-private-items",
+        "echo $ codetour_export_to_md",
+        # export code tour to md
+        "codetour_export_to_md",
+        # copy to /docs/ because it is github standard
+        "echo $ rsync -a --info=progress2 --delete-after target/doc docs",
+        "rsync -a --info=progress2 --delete-after target/doc docs",
+        # message to help user with next move
+        "echo after successful doc, run cargo make fmt msg_for_commit",
+        ]
+```
 
 [comment]: # (lmake_readme exclude start A)  
 

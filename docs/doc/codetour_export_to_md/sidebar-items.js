@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["enable_ansi_support",""],["main","the default is the subfolder .tour inside the current folder for other cases add the argument \"folder\""]],"mod":[["lib_internal","codetour_export_to_md/src/lib_internal.rs This is an internal lib for the main.rs. I don't want to make it a real lib.rs external library."]]});

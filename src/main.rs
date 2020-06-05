@@ -1,7 +1,7 @@
 // region: lmake_readme include "readme.md" //! A
 //! # codetour_export_to_md
 //! 
-//! version: 2020.512.2010  date: 2020-05-12 authors: Luciano Bestia  
+//! version: 2020.605.1103  date: 2020-06-05 authors: Luciano Bestia  
 //! **Export CodeTour files to md**
 //! 
 //! 
@@ -44,10 +44,37 @@
 //! It just hides all the other non-important code for basic human understanding of the code flow.  
 //! And the links are "alive", they go to the actual code in Github.  
 //! 
+//! ## makefile.toml
+//! 
+//! I use it inside `makefile.toml` when creating docs like this:\
+//! 
+//! ```toml
+//! [tasks.doc]
+//!     description = "cargo doc - create docs from doc comments"
+//!     clear = true
+//!     script= [
+//!         "echo $ lmake_readme",
+//!         # copy data from cargo.toml to readme.md, then include text from readme.md into *.rs doc comments
+//!         "lmake_readme",
+//!         "echo $ cargo doc --no-deps --document-private-items",
+//!         # create doc from doc comments
+//!         "cargo doc --no-deps --document-private-items",
+//!         "echo $ codetour_export_to_md",
+//!         # export code tour to md
+//!         "codetour_export_to_md",
+//!         # copy to /docs/ because it is github standard
+//!         "echo $ rsync -a --info=progress2 --delete-after target/doc docs",
+//!         "rsync -a --info=progress2 --delete-after target/doc docs",
+//!         # message to help user with next move
+//!         "echo after successful doc, run cargo make fmt msg_for_commit",
+//!         ]
+//! ```
+//! 
 // endregion: lmake_readme include "readme.md" //! A
 
 mod lib_internal;
 
+use ansi_term::Colour::Yellow;
 use clap::App;
 use std::env;
 
@@ -57,7 +84,7 @@ fn main() {
     // this function is different for Windows and for Linux.
     // Look at the code of this function (2 variations).
     enable_ansi_support();
-    println!("Export all .tour/*.tour to md");
+    println!("{} {}", Yellow.paint("Export all .tour/*.tour to md"), env!("CARGO_PKG_VERSION"));
     // define the CLI input line parameters using the clap library
     let arguments = App::new(env!("CARGO_PKG_NAME"))
         .version(env!("CARGO_PKG_VERSION"))
