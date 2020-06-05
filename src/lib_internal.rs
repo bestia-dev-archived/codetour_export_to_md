@@ -10,12 +10,12 @@ use serde_derive::{Deserialize, Serialize};
 use std::fs;
 use unwrap::unwrap;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone,Debug)]
 pub struct Position {
     line: usize,
     character: usize,
 }
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Selection {
     start: Position,
     end: Position,
@@ -111,7 +111,7 @@ pub fn export_all_tours(folder: &str) {
                 //open the file and take 10 lines before line
                 let filename_code = format!("{}{}", folder.replace(".tours", ""), &step.file);
                 if let Ok(step_code) = fs::read_to_string(&filename_code){
-                    println!("read file with code: {}", Green.paint(&filename_code));
+                    println!("read file with code: {} line {}", Green.paint(&filename_code), step.line);
                     md_text.push_str(&delimiter_for_code_start(&filename_code));
                     for (i, line) in step_code.lines().enumerate() {
                         // the enumerator is zero-based.

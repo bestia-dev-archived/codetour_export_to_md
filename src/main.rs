@@ -1,7 +1,7 @@
 // region: lmake_readme include "readme.md" //! A
 //! # codetour_export_to_md
 //! 
-//! version: 2020.605.1103  date: 2020-06-05 authors: Luciano Bestia  
+//! version: 2020.605.1303  date: 2020-06-05 authors: Luciano Bestia  
 //! **Export CodeTour files to md**
 //! 
 //! 

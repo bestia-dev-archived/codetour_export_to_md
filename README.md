@@ -1,7 +1,7 @@
 # codetour_export_to_md
 
 [comment]: # (lmake_readme cargo.toml data start)
-version: 2020.605.1103  date: 2020-06-05 authors: Luciano Bestia  
+version: 2020.605.1303  date: 2020-06-05 authors: Luciano Bestia  
 **Export CodeTour files to md**
 
 [comment]: # (lmake_readme cargo.toml data end)
