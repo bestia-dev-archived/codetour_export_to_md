@@ -1,9 +1,10 @@
 # codetour_export_to_md
 
 [comment]: # (lmake_readme cargo.toml data start)
-version: 2020.605.1303  date: 2020-06-05 authors: Luciano Bestia  
-**Export CodeTour files to md**
 
+**Export CodeTour files to md**  
+***version: 2020.605.1303 date: 2020-06-05 author: [dev_Bestia](https://bestia.dev) repository: [GitHub](https://github.com/LucianoBestia/codetour_export_to_md)***  
+ 
 [comment]: # (lmake_readme cargo.toml data end)
 
 CodeTour is a fantastic extension for VSCode. Kudos to the authors.  
