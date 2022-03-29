@@ -1,10 +1,10 @@
 [package]
 name = "codetour_export_to_md"
 version = "2020.605.1303"
-authors = ["Luciano Bestia <luciano.bestia@gmail.com>"]
+authors = ["bestia.dev <info@bestia.dev>"]
 edition = "2018"
 description = "Export CodeTour files to md"
-repository = "https://github.com/LucianoBestia/codetour_export_to_md"
+repository = "https://github.com/bestia-dev/codetour_export_to_md"
 readme = "README.md"
 license = "MIT"
 keywords = ["rust", "make"]

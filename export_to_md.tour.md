@@ -3,7 +3,7 @@
 
 The default is to search in the .tours folder.
 
-##### step 1 of 10 [View code in GitHub](https://github.com/LucianoBestia/codetour_export_to_md/blob/master/src/main.rs#L104)
+##### step 1 of 10 [View code in GitHub](https://github.com/bestia-dev/codetour_export_to_md/blob/master/src/main.rs#L104)
 ```rust
             clap::Arg::with_name("folder")
                 .value_name("folder")
@@ -23,7 +23,7 @@ The default is to search in the .tours folder.
 
 The function will export all the tours files in one go.
 
-##### step 2 of 10 [View code in GitHub](https://github.com/LucianoBestia/codetour_export_to_md/blob/master/src/main.rs#L106)
+##### step 2 of 10 [View code in GitHub](https://github.com/bestia-dev/codetour_export_to_md/blob/master/src/main.rs#L106)
 ```rust
                 .long("folder")
                 .help("--folder=example/.tours"),
@@ -43,7 +43,7 @@ The function will export all the tours files in one go.
 
 Some extended data is in a separate file. Mostly to make links to github.
 
-##### step 3 of 10 [View code in GitHub](https://github.com/LucianoBestia/codetour_export_to_md/blob/master/src/lib_internal.rs#L68)
+##### step 3 of 10 [View code in GitHub](https://github.com/bestia-dev/codetour_export_to_md/blob/master/src/lib_internal.rs#L68)
 ```rust
         }
         None => format!("```{}", ""),
@@ -62,7 +62,7 @@ pub fn export_all_tours(folder: &str) {
 ## read file
 Read and deserialize the tour file. It is json.
 
-##### step 4 of 10 [View code in GitHub](https://github.com/LucianoBestia/codetour_export_to_md/blob/master/src/lib_internal.rs#L79)
+##### step 4 of 10 [View code in GitHub](https://github.com/bestia-dev/codetour_export_to_md/blob/master/src/lib_internal.rs#L79)
 ```rust
     if let Ok(tour_extended) = fs::read_to_string("tour_extended.json"){
         let tour_extended: TourExtended = unwrap!(serde_json::from_str(&tour_extended));
@@ -81,7 +81,7 @@ Read and deserialize the tour file. It is json.
 ## header
 Data of the header and description.
 
-##### step 5 of 10 [View code in GitHub](https://github.com/LucianoBestia/codetour_export_to_md/blob/master/src/lib_internal.rs#L86)
+##### step 5 of 10 [View code in GitHub](https://github.com/bestia-dev/codetour_export_to_md/blob/master/src/lib_internal.rs#L86)
 ```rust
             let filename_tour = unwrap!(filename_pathbuff.to_str());
             println!("file tour: {}", Green.paint(filename_tour));
@@ -100,7 +100,7 @@ Data of the header and description.
 ## step header
 Every step has a number and a link to github.
 
-##### step 6 of 10 [View code in GitHub](https://github.com/LucianoBestia/codetour_export_to_md/blob/master/src/lib_internal.rs#L102)
+##### step 6 of 10 [View code in GitHub](https://github.com/bestia-dev/codetour_export_to_md/blob/master/src/lib_internal.rs#L102)
 ```rust
                 let description = step.description.replace("<", "\\<").replace(">", "\\>");
                 // inside the description is also the step title with ###
@@ -119,7 +119,7 @@ Every step has a number and a link to github.
 ## source code file
 Read the source code.
 
-##### step 7 of 10 [View code in GitHub](https://github.com/LucianoBestia/codetour_export_to_md/blob/master/src/lib_internal.rs#L119)
+##### step 7 of 10 [View code in GitHub](https://github.com/bestia-dev/codetour_export_to_md/blob/master/src/lib_internal.rs#L119)
 ```rust
                     tour_extended.github_url,
                     tour_extended.github_user,
@@ -138,7 +138,7 @@ Read the source code.
 ## selection fragment
 Take lines defined in selection. At least 10 lines. Added delimiters to make selection visible.
 
-##### step 8 of 10 [View code in GitHub](https://github.com/LucianoBestia/codetour_export_to_md/blob/master/src/lib_internal.rs#L145)
+##### step 8 of 10 [View code in GitHub](https://github.com/bestia-dev/codetour_export_to_md/blob/master/src/lib_internal.rs#L145)
 ```rust
                                 // I need a way to show the user selection
                                 if i == selection.start.line {
@@ -157,7 +157,7 @@ Take lines defined in selection. At least 10 lines. Added delimiters to make sel
 ## without selection
 If there is no selection, use the line number.
 
-##### step 9 of 10 [View code in GitHub](https://github.com/LucianoBestia/codetour_export_to_md/blob/master/src/lib_internal.rs#L153)
+##### step 9 of 10 [View code in GitHub](https://github.com/bestia-dev/codetour_export_to_md/blob/master/src/lib_internal.rs#L153)
 ```rust
                                 md_text.push_str("```\n");
                                 break;
@@ -176,7 +176,7 @@ If there is no selection, use the line number.
 ## Save
 Save the md file.
 
-##### step 10 of 10 [View code in GitHub](https://github.com/LucianoBestia/codetour_export_to_md/blob/master/src/lib_internal.rs#L168)
+##### step 10 of 10 [View code in GitHub](https://github.com/bestia-dev/codetour_export_to_md/blob/master/src/lib_internal.rs#L168)
 ```rust
                  } else {
                     println!("File does not exist: {}", Red.paint(&filename_code));

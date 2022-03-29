@@ -1,8 +1,8 @@
 #![doc(
-    html_favicon_url = "https://github.com/LucianoBestia/mem6_game/raw/master/webfolder/mem6/images/icons-16.png"
+    html_favicon_url = "https://github.com/bestia-dev/mem6_game/raw/master/webfolder/mem6/images/icons-16.png"
 )]
 #![doc(
-    html_logo_url = "https://github.com/LucianoBestia/mem6_game/raw/master/webfolder/mem6/images/icons-192.png"
+    html_logo_url = "https://github.com/bestia-dev/mem6_game/raw/master/webfolder/mem6/images/icons-192.png"
 )]
 // region: lmake_readme include "readme.md" //! A
 //! # unForGetTable  (development name: mem6)

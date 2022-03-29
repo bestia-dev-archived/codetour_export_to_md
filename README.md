@@ -3,7 +3,7 @@
 [comment]: # (lmake_readme cargo.toml data start)
 
 **Export CodeTour files to md**  
-***version: 2020.605.1303 date: 2020-06-05 author: [dev_Bestia](https://bestia.dev) repository: [GitHub](https://github.com/LucianoBestia/codetour_export_to_md)***  
+***version: 2020.605.1303 date: 2020-06-05 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/codetour_export_to_md)***  
  
 [comment]: # (lmake_readme cargo.toml data end)
 
@@ -39,9 +39,9 @@ If the files are in another folder, like for my example, the argument is like th
 In my other project I tried to write some documentation about the code flow.  
 It was horrific.  
 I avoided copy/paste the source code because in no time it is obsolete and misleading.  
-<https://github.com/LucianoBestia/mem6_game/blob/master/CodeFlow.md>  
+<https://github.com/bestia-dev/mem6_game/blob/master/CodeFlow.md>  
 Now I exported the md from CodeTour and it is amazing:  
-<https://github.com/LucianoBestia/mem6_game/blob/master/codetour_start_route_template_render.md>  
+<https://github.com/bestia-dev/mem6_game/blob/master/codetour_start_route_template_render.md>  
 The step by step approach jumping from module to module is great.  
 It just hides all the other non-important code for basic human understanding of the code flow.  
 And the links are "alive", they go to the actual code in Github.  
@@ -83,7 +83,7 @@ run with no parameters. Best together with `cargo doc`.
 ## development
 
 Clone the repo  
-`git clone git@github.com:LucianoBestia/codetour_export_to_md.git`  
+`git clone git@github.com:bestia-dev/codetour_export_to_md.git`  
 Use prepared cargo make scripts:  
 `clear; cargo make release`  
 `clear; cargo make run_rel2`  
