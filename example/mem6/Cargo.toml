@@ -1,7 +1,7 @@
 [package]
 name = "mem6"
 version = "2020.422.1045"
-authors = ["bestia.dev <info@bestia.dev>"]
+authors = ["bestia.dev"]
 edition = "2018"
 description = "Learning Rust Wasm/WebAssembly with Virtual Dom Dodrio"
 repository = "https://github.com/bestia-dev/mem6_game"
