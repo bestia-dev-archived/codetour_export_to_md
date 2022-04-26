@@ -4,10 +4,12 @@
 
 **Export CodeTour files to md**  
 ***version: 2020.605.1303 date: 2020-06-05 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/codetour_export_to_md)***  
- 
+
 [comment]: # (lmake_readme cargo.toml data end)
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fbestia-dev%2Fcodetour_export_to_md&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+
+Hashtags: #rustlang #developmenttool
 
 CodeTour is a fantastic extension for VSCode. Kudos to the authors.  
 <https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour>  
