@@ -7,7 +7,7 @@
 
 [comment]: # (lmake_readme cargo.toml data end)
 
-![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/413247050)
+![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/413247050.svg)
 
 Hashtags: #rustlang #developmenttool
 
