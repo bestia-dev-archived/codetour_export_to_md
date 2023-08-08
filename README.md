@@ -7,6 +7,8 @@
 
 [comment]: # (lmake_readme cargo.toml data end)
 
+![status](https://img.shields.io/badge/obsolete-red) 
+![status](https://img.shields.io/badge/archived-yellow) 
 ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/413247050.svg)
 
 Hashtags: #rustlang #developmenttool
